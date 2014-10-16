@@ -18,6 +18,7 @@ class KapachowYo
         fail unless CONFIG
         @gmail = nil
         @debug = CONFIG['debug_logging']
+        @yo_attempts = 0
         Yo.api_key = CONFIG['yo_api_key']
         check
     end
@@ -38,14 +39,21 @@ class KapachowYo
     end
 
     def send_yo
+        puts "Yo attempts so far: #{@yo_attempts}" if @debug
+        return if @yo_attempts > 5
+
         link = CONFIG['yo_link']
         begin
             if link
+                puts "Sending Yo with link #{link}" if @debug
                 Yo.all!({ :link => link })
             else
+                puts "Sending Yo with no link" if @debug
                 Yo.all!
             end
         rescue YoRateLimitExceeded
+            puts "Too many Yos sent. Waiting a minute..." if @debug
+            @yo_attempts += 1
             sleep(60)
             send_yo
         end
