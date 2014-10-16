@@ -1,0 +1,34 @@
+## Kapa-chow! Yo config ##
+
+# Debugging
+#
+# If you set debug_logging to true you'll see more log messages, and your
+# codes file won't be marked as used.
+#
+debug_logging: false
+
+# Gmail details
+#
+# Set gmail_label to the name of the Gmail label/folder you want to check.
+# To label your Kapa-chow! emails for a particular release, log into Gmail
+# on the web and search for this:
+#
+#     from:(noreply@bandcamp.com) "just bought" "[title of your release]"
+#
+# Click the down arrow at the right end of the search box and click the
+# "Create a filter with this search" link. Choose "Apply the label", "New
+# label" and enter the label name. Check the "Also apply filter to n
+# matching conversations" box and choose "Create filter".
+#
+gmail_username: you@gmail.com
+gmail_password: password
+gmail_label: Subscription sales
+
+# Yo details
+#
+# Get a Yo API key from http://yoapi.justyo.co
+#
+# yo_link is an optional link that you can send with the Yo. Your Bandcamp
+# subscribers page might be cool (https://yourband.bandcamp.com/subscribers)
+yo_api_key: xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# yo_link: https://yourband.bandcamp.com/subscribers
