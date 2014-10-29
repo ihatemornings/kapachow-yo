@@ -37,7 +37,7 @@ class KapachowYo
             puts "Found #{unread_emails.size} unread messages" if @debug
             unread_emails.each { |email| email.mark(:read) }
             return unread_emails.size
-        rescue ByeResponseError
+        rescue Net::IMAP::ByeResponseError
             puts "Gmail error. I'll try again next time."
             return 0
         end
