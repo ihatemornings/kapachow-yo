@@ -32,10 +32,15 @@ class KapachowYo
     private
 
     def new_subscription_count
-        unread_emails = @gmail.mailbox(CONFIG['gmail_label']).emails(:unread)
-        puts "Found #{unread_emails.size} unread messages" if @debug
-        unread_emails.each { |email| email.mark(:read) }
-        return unread_emails.size
+        begin
+            unread_emails = @gmail.mailbox(CONFIG['gmail_label']).emails(:unread)
+            puts "Found #{unread_emails.size} unread messages" if @debug
+            unread_emails.each { |email| email.mark(:read) }
+            return unread_emails.size
+        rescue ByeResponseError
+            puts "Gmail error. I'll try again next time."
+            return 0
+        end
     end
 
     def send_yo
