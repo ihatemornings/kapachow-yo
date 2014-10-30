@@ -34,7 +34,7 @@ class KapachowYo
     def new_subscription_count
         begin
             unread_emails = @gmail.mailbox(CONFIG['gmail_label']).emails(:unread)
-            puts "Found #{unread_emails.size} unread messages" if @debug && unread_email.size > 0
+            puts "Found #{unread_emails.size} unread messages" if @debug && unread_emails.size > 0
             unread_emails.each { |email| email.mark(:read) }
             return unread_emails.size
         rescue Net::IMAP::ByeResponseError
