@@ -38,7 +38,10 @@ class KapachowYo
             unread_emails.each { |email| email.mark(:read) }
             return unread_emails.size
         rescue Net::IMAP::ByeResponseError
-            puts "Gmail error. I'll try again next time."
+            puts "Gmail ByeResponseError. I'll try again next time."
+            return 0
+        rescue Net::IMAP::NoResponseError
+            puts "Gmail NoResponseError. I'll try again next time."
             return 0
         end
     end
